@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>King Tutts Fitness | Reign Over Your Body</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050507;
+            --bg2: #0a0a0f;
+            --panel: #0d0d14;
+            --panel2: #12121a;
+            --text: #e0e8ff;
+            --muted: rgba(200, 210, 255, 0.5);
+            --gold: #ffd700;
+            --gold2: #ffaa00;
+            --gold3: rgba(255, 215, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Exo 2', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        @keyframes rgbBorder {
+            0%   { border-color: #ff0055; box-shadow: 0 0 12px rgba(255,0,85,0.15); }
+            33%  { border-color: #00ff88; box-shadow: 0 0 12px rgba(0,255,136,0.15); }
+            66%  { border-color: #00bbff; box-shadow: 0 0 12px rgba(0,187,255,0.15); }
+            100% { border-color: #ff0055; box-shadow: 0 0 12px rgba(255,0,85,0.15); }
+        }
+
+        @keyframes goldGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255,215,0,0.5), 0 0 40px rgba(255,215,0,0.2); }
+            50%       { text-shadow: 0 0 35px rgba(255,215,0,0.9), 0 0 70px rgba(255,215,0,0.4); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50%       { transform: scale(1.03); }
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            padding: 70px 20px 50px;
+            text-align: center;
+            background: radial-gradient(ellipse at top, rgba(255,215,0,0.08) 0%, transparent 65%);
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 40px,
+                rgba(255,215,0,0.02) 40px,
+                rgba(255,215,0,0.02) 41px
+            );
+            pointer-events: none;
+        }
+        .site-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.4rem, 9vw, 5.5rem);
+            font-weight: 900;
+            color: var(--gold);
+            animation: goldGlow 3s ease-in-out infinite;
+            line-height: 1.05;
+            letter-spacing: 2px;
+        }
+        .site-subtitle {
+            letter-spacing: 6px;
+            color: var(--muted);
+            margin-top: 12px;
+            font-size: clamp(0.65rem, 2vw, 0.85rem);
+            font-family: 'Orbitron', sans-serif;
+        }
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: clamp(20px, 5vw, 60px);
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+            animation: fadeUp 0.6s ease both;
+        }
+        .stat-item:nth-child(2) { animation-delay: 0.1s; }
+        .stat-item:nth-child(3) { animation-delay: 0.2s; }
+        .stat-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 900;
+            color: var(--gold);
+        }
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5,5,7,0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,215,0,0.12);
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        nav::-webkit-scrollbar { display: none; }
+        .nav-link {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(0.6rem, 1.8vw, 0.78rem);
+            color: var(--muted);
+            padding: 18px clamp(12px, 3vw, 28px);
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+        .nav-link:hover { color: var(--gold); }
+        .nav-link.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* ─── SECTIONS ─── */
+        .section-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            animation: fadeUp 0.4s ease both;
+        }
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            color: var(--gold);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .section-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold2), var(--gold));
+            margin-bottom: 35px;
+        }
+
+        /* ─── PROGRAMS ─── */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 22px;
+        }
+        .course-card {
+            background: var(--panel);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 14px;
+            padding: 32px 28px;
+            text-align: center;
+            transition: var(--transition);
+            animation: rgbBorder 7s linear infinite;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .course-card:nth-child(2) { animation-delay: -2.3s; }
+        .course-card:nth-child(3) { animation-delay: -4.6s; }
+        .course-card:hover { transform: translateY(-6px); background: var(--panel2); }
+        .tier-icon { font-size: 2.2rem; margin-bottom: 4px; }
+        .tier-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+        .tier-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .tier-price span { font-size: 1rem; color: var(--muted); font-weight: 400; }
+        .tier-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+        .tier-features {
+            list-style: none;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 8px 0;
+        }
+        .tier-features li {
+            font-size: 0.85rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tier-features li::before {
+            content: '✦';
+            color: var(--gold);
+            font-size: 0.6rem;
+            flex-shrink: 0;
+        }
+        .enroll-btn {
+            margin-top: auto;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--gold2), var(--gold));
+            border: none;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            color: #050507;
+            transition: var(--transition);
+        }
+        .enroll-btn:hover { opacity: 0.88; transform: scale(1.02); }
+        .enroll-btn:active { transform: scale(0.98); }
+        .popular-badge {
+            background: linear-gradient(135deg, var(--gold2), var(--gold));
+            color: #050507;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 4px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* ─── ABOUT ─── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        @media (min-width: 768px) {
+            .about-grid { grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        }
+        .about-text p {
+            line-height: 1.9;
+            color: var(--muted);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+        .about-highlight {
+            border-left: 3px solid var(--gold);
+            padding-left: 18px;
+            margin: 24px 0;
+            font-style: italic;
+            color: rgba(200,210,255,0.7);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        .tier-system {
+            background: var(--panel);
+            border-radius: 14px;
+            padding: 30px;
+            border: 1px solid rgba(255,215,0,0.1);
+        }
+        .tier-system h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--gold);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .tier-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .tier-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .tier-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .tier-row-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            flex: 1;
+        }
+        .tier-row-desc { font-size: 0.75rem; color: var(--muted); }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 28px;
+        }
+        .stat-box {
+            background: var(--panel);
+            border: 1px solid rgba(255,215,0,0.1);
+            border-radius: 10px;
+            padding: 18px 10px;
+            text-align: center;
+        }
+        .stat-box-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            font-weight: 900;
+        }
+        .stat-box-label { font-size: 0.65rem; color: var(--muted); letter-spacing: 1px; margin-top: 4px; text-transform: uppercase; }
+
+        /* ─── TESTIMONIALS ─── */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .testimonial-card {
+            background: var(--panel);
+            border: 1px solid rgba(255,215,0,0.08);
+            border-radius: 14px;
+            padding: 26px;
+        }
+        .stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 12px; }
+        .testimonial-text {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: rgba(200,210,255,0.75);
+            font-style: italic;
+            margin-bottom: 18px;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold2), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #050507;
+            flex-shrink: 0;
+        }
+        .author-name { font-size: 0.85rem; font-weight: 600; }
+        .author-info { font-size: 0.75rem; color: var(--muted); }
+
+        /* ─── JOIN / SIGNUP ─── */
+        .signup-wrap {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .signup-intro {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 35px;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        .form-card {
+            background: var(--panel);
+            border: 1px solid rgba(255,215,0,0.1);
+            border-radius: 16px;
+            padding: clamp(24px, 5vw, 44px);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+        @media (min-width: 520px) {
+            .form-row { grid-template-columns: 1fr 1fr; gap: 0 16px; }
+        }
+        .form-group { display: flex; flex-direction: column; margin-bottom: 18px; }
+        .form-group label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.62rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: #0f0f16;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 14px 16px;
+            color: var(--text);
+            border-radius: 8px;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 15px;
+            transition: border-color 0.25s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold2);
+            background: #12121c;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(200,210,255,0.25); }
+        .form-group select option { background: #0f0f16; }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--gold2), var(--gold));
+            border: none;
+            border-radius: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            color: #050507;
+            transition: var(--transition);
+            margin-top: 6px;
+        }
+        .submit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+        .submit-btn:active { transform: translateY(0) scale(0.98); }
+        .form-note {
+            text-align: center;
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-top: 14px;
+            line-height: 1.6;
+        }
+
+        /* ─── CONTACT ─── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr 1.6fr; }
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .contact-item {
+            background: var(--panel);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .contact-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: var(--gold3);
+            border: 1px solid rgba(255,215,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .contact-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.62rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .contact-value { font-size: 0.9rem; color: var(--muted); }
+        .contact-value a { color: var(--muted); text-decoration: none; }
+        .contact-value a:hover { color: var(--gold); }
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            padding: 8px 18px;
+            background: rgba(255,215,0,0.06);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 6px;
+            color: var(--gold);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .social-btn:hover { background: rgba(255,215,0,0.14); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 20px;
+        }
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        .footer-copy {
+            font-size: 0.65rem;
+            color: var(--muted);
+            letter-spacing: 2px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 14px 0;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            font-size: 0.68rem;
+            color: var(--muted);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--gold); }
+
+        /* ─── SUCCESS TOAST ─── */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, var(--gold2), var(--gold));
+            color: #050507;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            z-index: 9999;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* ─── MOBILE TWEAKS ─── */
+        @media (max-width: 480px) {
+            .stats-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .stat-box-num { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="site-title">KING TUTTS<br>FITNESS</div>
+    <p class="site-subtitle">REIGN OVER YOUR BODY</p>
+    <div class="header-stats">
+        <div class="stat-item">
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Transformed</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">5</div>
+            <div class="stat-label">Tier System</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Dedicated</div>
+        </div>
+    </div>
+</header>
+
+<nav id="mainNav">
+    <button class="nav-link active" onclick="showTab('programs')">Programs</button>
+    <button class="nav-link" onclick="showTab('about')">About</button>
+    <button class="nav-link" onclick="showTab('testimonials')">Results</button>
+    <button class="nav-link" onclick="showTab('signup')">Join</button>
+    <button class="nav-link" onclick="showTab('contact')">Contact</button>
+</nav>
+
+<main>
+
+    <!-- ── PROGRAMS ── -->
+    <section id="programs" class="section-wrap">
+        <h2 class="section-title">PROGRAMS</h2>
+        <div class="section-divider"></div>
+        <div class="courses-grid">
+
+            <div class="course-card">
+                <div class="tier-icon">🥉</div>
+                <h2 class="tier-name" style="color:#cd7f32;">BRONZE</h2>
+                <div class="tier-price">$49<span>/mo</span></div>
+                <p class="tier-desc">Perfect for beginners ready to build a foundation of strength and consistency.</p>
+                <ul class="tier-features">
+                    <li>Beginner workout plan</li>
+                    <li>Nutrition basics guide</li>
+                    <li>Weekly check-in</li>
+                    <li>Community access</li>
+                </ul>
+                <button class="enroll-btn" onclick="enrollIn('Bronze')">ENROLL NOW</button>
+            </div>
+
+            <div class="course-card" style="border: 1px solid rgba(255,215,0,0.3);">
+                <div class="popular-badge">MOST POPULAR</div>
+                <div class="tier-icon">🥇</div>
+                <h2 class="tier-name" style="color:var(--gold);">GOLD</h2>
+                <div class="tier-price">$99<span>/mo</span></div>
+                <p class="tier-desc">Advanced sculpting, personalized meal plans, and dedicated coaching support.</p>
+                <ul class="tier-features">
+                    <li>Custom workout program</li>
+                    <li>Full meal plan</li>
+                    <li>Bi-weekly 1-on-1 calls</li>
+                    <li>Progress tracking</li>
+                    <li>Priority support</li>
+                </ul>
+                <button class="enroll-btn" onclick="enrollIn('Gold')">ENROLL NOW</button>
+            </div>
+
+            <div class="course-card">
+                <div class="tier-icon">💎</div>
+                <h2 class="tier-name" style="color:#00f5ff;">DIAMOND</h2>
+                <div class="tier-price">$199<span>/mo</span></div>
+                <p class="tier-desc">The elite total lifestyle transformation. Full access, full accountability.</p>
+                <ul class="tier-features">
+                    <li>Elite custom programming</li>
+                    <li>Daily macro coaching</li>
+                    <li>Weekly 1-on-1 calls</li>
+                    <li>24/7 direct messaging</li>
+                    <li>Supplement guidance</li>
+                    <li>Lifestyle optimization</li>
+                </ul>
+                <button class="enroll-btn" onclick="enrollIn('Diamond')">ENROLL NOW</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section id="about" class="section-wrap" style="display:none;">
+        <h2 class="section-title">ABOUT</h2>
+        <div class="section-divider"></div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>King Tutts Fitness was built on one belief: <strong style="color:var(--gold);">every person has a king or queen within them</strong> — they just need the right system to unleash it.</p>
+                <p>Byron Tutt is a certified personal trainer and nutrition coach with years of experience transforming bodies and mindsets. His proprietary 5-tier system meets you exactly where you are and progressively evolves you into the best version of yourself.</p>
+                <div class="about-highlight">
+                    "I don't just train bodies — I build habits, forge discipline, and unlock potential that most people never knew they had."<br>
+                    <span style="font-size:0.8rem; opacity:0.7; font-style:normal;">— Byron Tutt, Founder</span>
+                </div>
+                <p>From complete beginners to seasoned athletes, King Tutts Fitness has guided 500+ clients across the country to real, lasting results.</p>
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <div class="stat-box-num">500+</div>
+                        <div class="stat-box-label">Clients</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-box-num">5★</div>
+                        <div class="stat-box-label">Rated</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-box-num">100%</div>
+                        <div class="stat-box-label">Online</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tier-system">
+                <h3>THE 5-TIER SYSTEM</h3>
+                <div class="tier-bar">
+                    <div class="tier-row">
+                        <div class="tier-dot" style="background:#cd7f32;"></div>
+                        <span class="tier-row-name" style="color:#cd7f32;">BRONZE</span>
+                        <span class="tier-row-desc">Foundation & Form</span>
+                    </div>
+                    <div class="tier-row">
+                        <div class="tier-dot" style="background:#c0c0c0;"></div>
+                        <span class="tier-row-name" style="color:#c0c0c0;">SILVER</span>
+                        <span class="tier-row-desc">Building Momentum</span>
+                    </div>
+                    <div class="tier-row">
+                        <div class="tier-dot" style="background:var(--gold);"></div>
+                        <span class="tier-row-name" style="color:var(--gold);">GOLD</span>
+                        <span class="tier-row-desc">Sculpting & Performance</span>
+                    </div>
+                    <div class="tier-row">
+                        <div class="tier-dot" style="background:#e5e4e2;"></div>
+                        <span class="tier-row-name" style="color:#e5e4e2;">PLATINUM</span>
+                        <span class="tier-row-desc">Elite Conditioning</span>
+                    </div>
+                    <div class="tier-row">
+                        <div class="tier-dot" style="background:#00f5ff;"></div>
+                        <span class="tier-row-name" style="color:#00f5ff;">DIAMOND</span>
+                        <span class="tier-row-desc">Total Transformation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── TESTIMONIALS ── -->
+    <section id="testimonials" class="section-wrap" style="display:none;">
+        <h2 class="section-title">REAL RESULTS</h2>
+        <div class="section-divider"></div>
+        <div class="testimonials-grid">
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"I lost 35 pounds in 4 months on the Gold plan. Byron's approach is unlike anything else — he keeps you accountable without making you feel bad. I finally feel like myself again."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MJ</div>
+                    <div>
+                        <div class="author-name">Marcus J.</div>
+                        <div class="author-info">Gold Plan · Lost 35 lbs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Diamond tier changed my life. The 24/7 access to Byron means no question goes unanswered. I went from 18% body fat down to 9% in 6 months. This is elite coaching."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">TW</div>
+                    <div>
+                        <div class="author-name">Tasha W.</div>
+                        <div class="author-info">Diamond Plan · 18% → 9% BF</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Started on Bronze as a complete beginner. Six months later I'm on Gold and I've added 40 lbs to my bench. The 5-tier system actually works — you level up as you grow."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">DK</div>
+                    <div>
+                        <div class="author-name">Devon K.</div>
+                        <div class="author-info">Bronze → Gold · +40 lb bench</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"As a busy mom of three, I needed something flexible. Byron customized everything around my schedule. Down 22 lbs and more energetic than I've been in years."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">RL</div>
+                    <div>
+                        <div class="author-name">Rachel L.</div>
+                        <div class="author-info">Gold Plan · Lost 22 lbs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"The meal plans alone were worth the price. I used to think eating healthy was complicated. Byron broke it down so simply. I'm in the best shape of my life at 42."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SP</div>
+                    <div>
+                        <div class="author-name">Steve P.</div>
+                        <div class="author-info">Diamond Plan · Age 42</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"King Tutts isn't just a trainer — he's a mentor. My confidence went through the roof. I signed up for Bronze not knowing what to expect. Now I recommend this to everyone."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AN</div>
+                    <div>
+                        <div class="author-name">Aisha N.</div>
+                        <div class="author-info">Bronze Plan · 3 months in</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── JOIN / SIGNUP ── -->
+    <section id="signup" class="section-wrap" style="display:none;">
+        <h2 class="section-title">JOIN THE KINGDOM</h2>
+        <div class="section-divider"></div>
+        <div class="signup-wrap">
+            <p class="signup-intro">Ready to reign over your body? Fill out the form below and Byron will personally reach out within 24 hours to get you started on the right tier for your goals.</p>
+            <div class="form-card">
+                <form id="signupForm" action="https://formsubmit.co/Byrontutt89@gmail.com" method="POST" onsubmit="handleFormSubmit(event, this)">
+                    <input type="hidden" name="_subject" value="New King Tutts Fitness Sign Up!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" name="first_name" placeholder="Byron" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name" placeholder="Tutt" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" name="email" placeholder="you@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" name="phone" placeholder="(555) 000-0000">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Program Interest</label>
+                            <select name="program" id="programSelect">
+                                <option value="">Select a tier...</option>
+                                <option value="Bronze">🥉 Bronze — $49/mo</option>
+                                <option value="Gold">🥇 Gold — $99/mo</option>
+                                <option value="Diamond">💎 Diamond — $199/mo</option>
+                                <option value="Unsure">Not sure yet</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Current Fitness Level</label>
+                            <select name="fitness_level">
+                                <option value="">Select level...</option>
+                                <option value="Beginner">Beginner (just starting)</option>
+                                <option value="Intermediate">Intermediate (1-2 yrs)</option>
+                                <option value="Advanced">Advanced (3+ yrs)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Primary Goal</label>
+                        <select name="goal">
+                            <option value="">Select your goal...</option>
+                            <option value="Weight Loss">Weight Loss</option>
+                            <option value="Muscle Gain">Muscle Gain</option>
+                            <option value="Body Recomposition">Body Recomposition</option>
+                            <option value="Athletic Performance">Athletic Performance</option>
+                            <option value="General Health">General Health & Wellness</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tell Byron About Yourself</label>
+                        <textarea name="message" placeholder="Share your goals, current situation, any health considerations, or questions..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">START MY TRANSFORMATION ✦</button>
+                    <p class="form-note">🔒 Your info is private. Byron will contact you within 24 hours.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section id="contact" class="section-wrap" style="display:none;">
+        <h2 class="section-title">CONTACT</h2>
+        <div class="section-divider"></div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value"><a href="mailto:Byrontutt89@gmail.com">Byrontutt89@gmail.com</a></div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">⏰</div>
+                    <div>
+                        <div class="contact-label">Response Time</div>
+                        <div class="contact-value">Within 24 hours</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div>
+                        <div class="contact-label">Follow The King</div>
+                        <div class="contact-value">
+                            <div class="social-links">
+                                <a class="social-btn" href="#" onclick="return false;">IG</a>
+                                <a class="social-btn" href="#" onclick="return false;">TT</a>
+                                <a class="social-btn" href="#" onclick="return false;">YT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-card">
+                <form id="contactForm" action="https://formsubmit.co/Byrontutt89@gmail.com" method="POST" onsubmit="handleFormSubmit(event, this)">
+                    <input type="hidden" name="_subject" value="King Tutts Fitness — New Message">
+                    <input type="hidden" name="_captcha" value="false">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="name" placeholder="Your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="you@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" placeholder="How can I help you reign?" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">SEND MESSAGE ✦</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-logo">KING TUTTS FITNESS</div>
+    <div class="footer-links">
+        <a href="#" onclick="showTab('programs'); return false;">Programs</a>
+        <a href="#" onclick="showTab('about'); return false;">About</a>
+        <a href="#" onclick="showTab('testimonials'); return false;">Results</a>
+        <a href="#" onclick="showTab('signup'); return false;">Join</a>
+        <a href="#" onclick="showTab('contact'); return false;">Contact</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 KING TUTTS FITNESS &middot; BYRON TUTT &middot; ALL RIGHTS RESERVED</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+    function showTab(tabId) {
+        document.querySelectorAll('.section-wrap').forEach(s => s.style.display = 'none');
+        const target = document.getElementById(tabId);
+        if (target) { target.style.display = 'block'; }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            const map = { programs: 'programs', about: 'about', testimonials: 'results', signup: 'join', contact: 'contact' };
+            if (link.innerText.toLowerCase().trim() === (map[tabId] || tabId)) {
+                link.classList.add('active');
+            }
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function enrollIn(tier) {
+        showTab('signup');
+        setTimeout(() => {
+            const sel = document.getElementById('programSelect');
+            if (sel) sel.value = tier;
+        }, 100);
+    }
+
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    function handleFormSubmit(e, form) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const orig = btn.textContent;
+        btn.textContent = 'SENDING...';
+        btn.disabled = true;
+
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        }).then(() => {
+            form.reset();
+            btn.textContent = orig;
+            btn.disabled = false;
+            showToast('✦ MESSAGE SENT — BYRON WILL REACH OUT SOON!');
+        }).catch(() => {
+            // Fallback: allow native submit
+            form.submit();
+        });
+    }
+
+    // Initialize
+    showTab('programs');
+</script>
+
+</body>
+</html>
